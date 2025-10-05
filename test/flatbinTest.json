@@ -1,0 +1,104 @@
+{
+  "msg_type": "AddOrUpdateDevice",
+  "msg": {
+    "network_name": 11532737881864974336,
+    "device": {
+      "deviceName": "ARAG IBX-100 Orchard\u0000",
+      "workState": 0,
+      "numberOfConnectors": 1,
+      "connectorGeometry": {
+        "x": 1000,
+        "y": 0,
+        "z": 0
+      },
+      "connectorPivotXOffset": 0,
+      "connectorType": 0,
+      "connectorAngle": 0,
+      "isTrailing": 0,
+      "networkName": 11532737881864974336,
+      "hasDefaultDataLogging": 1,
+      "controlOperations": [
+        {
+          "operationName": "Function1\u0000",
+          "deviceElementNumber": 2,
+          "hasRateControlOperation": 1,
+          "operationGeometry": {
+            "x": -500,
+            "y": 0,
+            "z": 0
+          },
+          "operationWidth": 3500,
+          "operationLength": 0,
+          "connectorGeometry": {
+            "x": 1000,
+            "y": 0,
+            "z": 0
+          },
+          "connectorPivotXOffset": 0,
+          "workState": 0,
+          "sections": [
+            {
+              "elementNumberOfSection": 3,
+              "sectionGeometry": {
+                "x": -500,
+                "y": -875,
+                "z": 0
+              },
+              "sectionWidth": 1750,
+              "sectionLegth": 0,
+              "sectionLatencyOn": 0,
+              "sectionLatencyOff": 0
+            },
+            {
+              "elementNumberOfSection": 4,
+              "sectionGeometry": {
+                "x": -500,
+                "y": 875,
+                "z": 0
+              },
+              "sectionWidth": 1750,
+              "sectionLegth": 0,
+              "sectionLatencyOn": 0,
+              "sectionLatencyOff": 0
+            }
+          ],
+          "hasSectionControlOperation": 1,
+          "isSectionControlOperationSettable": 1,
+          "actualSectionControlState": 0,
+          "sectionLatencyType": 0,
+          "validSectionLatencyFromBoomOn": 1,
+          "sectionLatencyFromBoomOn": 200,
+          "validSectionLatencyFromBoomOff": 1,
+          "sectionLatencyFromBoomOff": 200,
+          "channels": [
+            {
+              "channelElementName": "Function1\u0000",
+              "elementNumberOfChannel": 2,
+              "actualPrescriptionControlStateForChannel": 0,
+              "channelSetpointLatency": 0,
+              "ratectrlConfigurations": [
+                {
+                  "actualRateDdi": 2,
+                  "setpointRateDdi": 1,
+                  "ddiType": 0,
+                  "rates": [
+                    {
+                      "elementNumberOfRate": 2,
+                      "rateGeometry": {
+                        "x": -500,
+                        "y": 0,
+                        "z": 0
+                      },
+                      "isLowestLevelRate": 1
+                    }
+                  ]
+                }
+              ],
+              "selectedDdiPairIdx": 0
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
