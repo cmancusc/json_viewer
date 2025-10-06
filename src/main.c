@@ -6,6 +6,8 @@
 
 #include "jsmn.h"
 
+#define FREE_PTR( x ) { free(x); x=0; }
+
 /* strdup implementation for C99 compatibility */
 char* my_strdup(const char *s) {
     size_t len = strlen(s) + 1;
@@ -143,7 +145,7 @@ int token_matches_search(JsonViewer *viewer, int tok_idx) {
 
     int matches = (stristr(token_str, viewer->search_term) != NULL);
 
-    free(token_str);
+    FREE_PTR(token_str);
     return matches;
 }
 
@@ -459,10 +461,10 @@ int viewer_init(JsonViewer *viewer, const char *json_str) {
         return -1;
     }
 
-    viewer->visible_tokens = malloc(sizeof(int) * MAX_TOKENS);
-    viewer->collapsed = calloc(viewer->token_count, sizeof(int));
-    viewer->depths = malloc(sizeof(int) * viewer->token_count);
-    viewer->search_matches = malloc(sizeof(int) * MAX_TOKENS);
+    viewer->visible_tokens = calloc(MAX_TOKENS, sizeof(int));
+    viewer->collapsed      = calloc(viewer->token_count, sizeof(int));
+    viewer->depths         = calloc(viewer->token_count, sizeof(int));
+    viewer->search_matches = calloc(MAX_TOKENS, sizeof(int));
 
     calculate_depths(viewer->tokens, viewer->token_count, viewer->depths);
 
@@ -470,12 +472,12 @@ int viewer_init(JsonViewer *viewer, const char *json_str) {
 }
 
 void viewer_cleanup(JsonViewer *viewer) {
-    free(viewer->json_str);
-    free(viewer->tokens);
-    free(viewer->visible_tokens);
-    free(viewer->collapsed);
-    free(viewer->depths);
-    free(viewer->search_matches);
+    FREE_PTR(viewer->json_str);
+    FREE_PTR(viewer->tokens);
+    FREE_PTR(viewer->visible_tokens);
+    FREE_PTR(viewer->collapsed);
+    FREE_PTR(viewer->depths);
+    FREE_PTR(viewer->search_matches);
 }
 
 /* Main viewer loop */
@@ -611,7 +613,7 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    char *json_str = argv[1];
+    char *json_str = 0;
     FILE *f = NULL;
 
     // Try to load from file if it exists
@@ -634,7 +636,7 @@ int main(int argc, char **argv) {
 
     JsonViewer viewer;
     if (viewer_init(&viewer, json_str) < 0) {
-        if (f) free(json_str);
+        if (f) FREE_PTR(json_str);
         return 1;
     }
 
@@ -658,7 +660,7 @@ int main(int argc, char **argv) {
 
     viewer_cleanup(&viewer);
 
-    if (f) free(json_str);
+    if (f) FREE_PTR(json_str);
 
     return 0;
 }
